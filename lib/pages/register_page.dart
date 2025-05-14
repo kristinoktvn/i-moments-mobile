@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:i_moments/pages/dashboard_page.dart';
+
 import 'dart:convert';
 
 class RegisterPage extends StatefulWidget {
@@ -9,37 +11,56 @@ class RegisterPage extends StatefulWidget {
   State<RegisterPage> createState() => _RegisterPageState();
 }
 
+// class _RegisterPageState extends State<RegisterPage> {
+//   final TextEditingController emailController = TextEditingController();
+//   final TextEditingController passwordController = TextEditingController();
+//   final TextEditingController nameController = TextEditingController();
+
+  // Future<void> register() async {
+  // print('Register button pressed'); // Cek apakah tombol ditekan
+  // final response = await http.post(
+  //   Uri.parse('http://192.168.18.189:3000/api/users/register'),
+  //   headers: {'Content-Type': 'application/json'},
+  //   body: json.encode({
+  //     'name': nameController.text,
+  //     'email': emailController.text,
+  //     'password': passwordController.text,
+  //   }),
+  // );
+  // Navigator.pushReplacement(
+  //   context,
+  //   MaterialPageRoute(builder: (context) => const DashboardPage()),
+  // );
+  // }
+
+  // if (response.statusCode == 201) {
+  //   // Jika sukses
+  //   ScaffoldMessenger.of(context).showSnackBar(
+  //     const SnackBar(content: Text('Register sukses! Silahkan login.')),
+  //   );
+  //   Navigator.pushReplacementNamed(context, '/login');
+  // } else {
+  //   // Jika gagal
+  //   ScaffoldMessenger.of(context).showSnackBar(
+  //     const SnackBar(content: Text('Register gagal, cek server')),
+  //   );
+  // }
+// }
+
 class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
 
   Future<void> register() async {
-  print('Register button pressed'); // Cek apakah tombol ditekan
-  final response = await http.post(
-    Uri.parse('http://192.168.18.189:3000/api/users/register'),
-    headers: {'Content-Type': 'application/json'},
-    body: json.encode({
-      'name': nameController.text,
-      'email': emailController.text,
-      'password': passwordController.text,
-    }),
-  );
+    print('Register button pressed'); // Cek apakah tombol ditekan
 
-  if (response.statusCode == 201) {
-    // Jika sukses
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Register sukses! Silahkan login.')),
-    );
-    Navigator.pushReplacementNamed(context, '/login');
-  } else {
-    // Jika gagal
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Register gagal, cek inputanmu')),
+    // Langsung ke DashboardPage tanpa API call
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const DashboardPage()),
     );
   }
-}
-
 
   @override
   Widget build(BuildContext context) {
